@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Ponto_interesse
+from .models import ComentarioAvaliacao
 
 class PontoInteresseAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome', 'descricao', 'caminho_imagem', 'localizacao')
@@ -8,3 +9,4 @@ class PontoInteresseAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Ponto_interesse, PontoInteresseAdmin)
+admin.site.register(ComentarioAvaliacao)
