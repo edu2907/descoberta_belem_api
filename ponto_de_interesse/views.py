@@ -5,17 +5,19 @@ from .models import ComentarioAvaliacao, Ponto_interesse
 from .serializers import ComentarioAvaliacaoSerializer, PontoInteresseSerializer
 import os
 from rest_framework.response import Response
-
 from ponto_de_interesse import serializers
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class PontoInteresseListAPIView(generics.ListCreateAPIView):
     queryset = Ponto_interesse.objects.all()
     serializer_class = PontoInteresseSerializer
+    permission_classes=[IsAuthenticatedOrReadOnly]
 
 class PontoInteresseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Ponto_interesse.objects.all()
     serializer_class = PontoInteresseSerializer
+    permission_classes=[IsAuthenticatedOrReadOnly]
 
     def destroy(self, request, *args, **kwargs):
      # Clear images from storage
@@ -30,6 +32,7 @@ class PontoInteresseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     
 class ComentarioAvaliacaoListAPIView(generics.ListCreateAPIView):
     serializer_class = ComentarioAvaliacaoSerializer
+    permission_classes=[IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         ponto_interesse_id = self.kwargs['pk']
